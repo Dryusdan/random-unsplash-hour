@@ -95,7 +95,7 @@ draw = ImageDraw.Draw(pattern,'RGBA')
 font = ImageFont.truetype("segoeui.ttf", 140)
 draw.text((hour_x,375), hour, (255, 255, 255, 0),font=font)
 font = ImageFont.truetype("segoeui.ttf", 65)
-draw.text((text_x,550), text, (255, 255, 255, 0),font=font)
+draw.text((text_x,550), text.encode('utf-8').strip(), (255, 255, 255, 0),font=font)
 pattern.save('output.jpg')
 if args.no_upload:
 	print("don't upload this image")
