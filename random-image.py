@@ -19,6 +19,7 @@ mastodon = Mastodon(
     api_base_url = 'https://' + mastodon_hostname,
 )
 
+
 response = requests.get("https://source.unsplash.com/collection/1053828/1920x1080")
 pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
 
