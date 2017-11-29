@@ -55,4 +55,10 @@ file_to_upload = 'output.jpg'
 
 print "Uploading %s..."%file_to_upload
 media_dict = mastodon.media_post(file_to_upload,"image/jpg")
+print "Uploaded file, returned:"
+print str(media_dict)
+toot_text = ""
+print "Tooting..." 
+print toot_text
+
 mastodon.status_post(toot_text, in_reply_to_id=None, media_ids=[media_dict] )
