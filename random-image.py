@@ -1,9 +1,10 @@
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-import requests
 from io import BytesIO
 from mastodon import Mastodon
+import requests
+import os
 
 def get_parameter( parameter, file_path ):
     # Check if secrets file exists
@@ -27,7 +28,7 @@ secrets_filepath = "secrets/secrets.txt"
 uc_client_id     = get_parameter("client_id",     secrets_filepath)
 uc_client_secret = get_parameter("client_secret", secrets_filepath)
 uc_access_token = get_parameter("access_token", secrets_filepath)
-mastodon_hostname = get_parameter("mastodon_hostname", config_filepath) # E.g., mastodon.social
+mastodon_hostname = get_parameter("mastodon_hostname", secrets_filepath)
 
 mastodon = Mastodon(
     client_id = uc_client_id,
