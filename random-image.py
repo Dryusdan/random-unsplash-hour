@@ -15,7 +15,7 @@ import json
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--period", help="La période du script [morning | mid-morning | lunch | snack | apero | diner | night]")
+parser.add_argument("-p", "--period", help="Time periode when script launch [morning | mid-morning | lunch | snack | apero | diner | night]")
 parser.add_argument("--no-upload", help="Don't upload image")
 args = parser.parse_args()
 
@@ -103,6 +103,7 @@ draw.text((hour_x,375), hour, (255, 255, 255, 0),font=font)
 font = ImageFont.truetype("segoeui.ttf", 65)
 draw.text((text_x,550), text, (255, 255, 255, 0),font=font)
 pattern.save('output.jpg')
+
 if args.no_upload:
 	print("don't upload this image")
 else:
