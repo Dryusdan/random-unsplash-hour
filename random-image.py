@@ -5,6 +5,7 @@ from io import BytesIO
 from mastodon import Mastodon
 import requests
 import os
+import sys
 
 def get_parameter( parameter, file_path ):
     # Check if secrets file exists
