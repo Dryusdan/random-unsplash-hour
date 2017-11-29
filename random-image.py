@@ -51,9 +51,9 @@ font = ImageFont.truetype("segoeui.ttf", 65)
 draw.text((847,550), "Hello", (255, 255, 255, 0),font=font)
 pattern.save('output.jpg')
 
-file_to_upload = 'output.jpg'
+#file_to_upload = ''
 
-media_dict = mastodon.media_post(file_to_upload,"image/jpg")
+media_dict = mastodon.media_post("output.jpg","image/jpg")
 print "Uploaded file, returned:"
 print str(media_dict)
 toot_text = ""
