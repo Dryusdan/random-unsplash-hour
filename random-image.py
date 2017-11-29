@@ -101,5 +101,5 @@ if args.no_upload:
 	print("don't upload this image")
 else:
 	media_dict = mastodon.media_post("output.jpg")
-	status.encode('utf-8').strip()
+	text.encode('utf-8').strip()
 	mastodon.status_post(status, in_reply_to_id=None, media_ids=[media_dict])
