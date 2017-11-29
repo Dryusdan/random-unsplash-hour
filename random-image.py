@@ -57,5 +57,6 @@ pattern.save('output.jpg')
 
 # media_dict = mastodon.media_post("output.jpg", "image/jpeg")
 media_dict = mastodon.media_post("output.jpg")
-
-mastodon.status_post("", in_reply_to_id=None, media_ids=[media_dict])
+status = ""
+status.encode('utf-8').strip()
+mastodon.status_post(status, in_reply_to_id=None, media_ids=[media_dict])
