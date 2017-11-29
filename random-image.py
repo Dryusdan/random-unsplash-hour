@@ -6,6 +6,8 @@ from mastodon import Mastodon
 import requests
 import os
 import sys
+import time
+import json
 
 def get_parameter( parameter, file_path ):
     # Check if secrets file exists
@@ -53,7 +55,7 @@ pattern.save('output.jpg')
 
 #file_to_upload = ''
 
-media_dict = mastodon.media_post("output.jpg","image/jpg")
+media_dict = mastodon.media_post("output.jpg", "image/jpeg")
 print "Uploaded file, returned:"
 print str(media_dict)
 toot_text = ""
