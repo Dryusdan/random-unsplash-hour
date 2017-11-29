@@ -5,6 +5,23 @@ import requests
 from io import BytesIO
 from mastodon import Mastodon
 
+def get_parameter( parameter, file_path ):
+    # Check if secrets file exists
+    if not os.path.isfile(file_path):    
+        print("File %s not found, exiting."%file_path)
+        sys.exit(0)
+
+    # Find parameter in file
+    with open( file_path ) as f:
+        for line in f:
+            if line.startswith( parameter ):
+                return line.replace(parameter + ":", "").strip()
+
+    # Cannot find parameter, exit
+    print(file_path + "  Missing parameter %s "%parameter)
+    sys.exit(0)
+
+
 # Load secrets from secrets file
 secrets_filepath = "secrets/secrets.txt"
 uc_client_id     = get_parameter("client_id",     secrets_filepath)
