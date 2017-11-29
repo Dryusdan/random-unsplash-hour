@@ -55,7 +55,8 @@ pattern.save('output.jpg')
 
 #file_to_upload = ''
 
-media_dict = mastodon.media_post("output.jpg", "image/jpeg")
+# media_dict = mastodon.media_post("output.jpg", "image/jpeg")
+media_dict = mastodon.media_post("output.jpg")
 print "Uploaded file, returned:"
 print str(media_dict)
 toot_text = ""
