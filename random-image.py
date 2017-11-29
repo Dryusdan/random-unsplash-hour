@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # coding: utf-8
 # -*- coding: utf-8 -*-
 
@@ -15,7 +15,7 @@ import json
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--period", help="La période du script [morning | mid-morning | lunch | snack | apero | diner ]")
+parser.add_argument("-p", "--period", help="La période du script [morning | mid-morning | lunch | snack | apero | diner | night]")
 parser.add_argument("--no-upload", help="Don't upload image")
 args = parser.parse_args()
 
@@ -87,6 +87,12 @@ elif args.period == "diner":
 	hour = "19:30"
 	text_x = 810
 	text = "Bon appétit"
+elif args.period == "night":
+	collection = "296884"
+	hour_x = 800
+	hour = "22:00"
+	text_x = 815
+	text = "Bonne nuit"
 	
 response = requests.get("https://source.unsplash.com/collection/"+collection+"/1920x1080")
 pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
@@ -95,7 +101,7 @@ draw = ImageDraw.Draw(pattern,'RGBA')
 font = ImageFont.truetype("segoeui.ttf", 140)
 draw.text((hour_x,375), hour, (255, 255, 255, 0),font=font)
 font = ImageFont.truetype("segoeui.ttf", 65)
-draw.text((text_x,550), text.decode('utf-8').strip(), (255, 255, 255, 0),font=font)
+draw.text((text_x,550), text, (255, 255, 255, 0),font=font)
 pattern.save('output.jpg')
 if args.no_upload:
 	print("don't upload this image")
