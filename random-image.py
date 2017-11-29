@@ -52,72 +52,54 @@ mastodon = Mastodon(
 
 #https://source.unsplash.com/collection/1053828/1920x1080
 if args.period == "morning":
-	response = requests.get("https://source.unsplash.com/collection/1088119/1920x1080")
-	pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
-	size = width, height = pattern.size
-	draw = ImageDraw.Draw(pattern,'RGBA')
-	font = ImageFont.truetype("segoeui.ttf", 140)
-
-	draw.text((835,375), "8:00", (255, 255, 255, 0),font=font)
-	font = ImageFont.truetype("segoeui.ttf", 65)
-	draw.text((853,550), "Bonjour", (255, 255, 255, 0),font=font)
+	collection = "1088119"
+	hour_x = 835
+	hour = "8:00"
+	text_x = 853
+	text = "Bonjour"
 elif args.period == "mid-morning":
-	response = requests.get("https://source.unsplash.com/collection/1053828/1920x1080")
-	pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
-	size = width, height = pattern.size
-	draw = ImageDraw.Draw(pattern,'RGBA')
-	font = ImageFont.truetype("segoeui.ttf", 140)
-
-	draw.text((800,375), "10:00", (255, 255, 255, 0),font=font)
-	font = ImageFont.truetype("segoeui.ttf", 65)
-	draw.text((890,550), "Hello", (255, 255, 255, 0),font=font)
+	collection = "1053828"
+	hour_x = 800
+	hour = "10:00"
+	text_x = 890
+	text = "Hello"
 elif args.period == "lunch":
-	response = requests.get("https://source.unsplash.com/collection/962861/1920x1080")
-	pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
-	size = width, height = pattern.size
-	draw = ImageDraw.Draw(pattern,'RGBA')
-	font = ImageFont.truetype("segoeui.ttf", 140)
-
-	draw.text((800,375), "12:00", (255, 255, 255, 0),font=font)
-	font = ImageFont.truetype("segoeui.ttf", 65)
-	draw.text((815,550), "Bon appétit", (255, 255, 255, 0),font=font)
+	collection = "962861"
+	hour_x = 800
+	hour = "12:00"
+	text_x = 815
+	text = "Bon appétit"
 elif args.period == "snack":
-	response = requests.get("https://source.unsplash.com/collection/1162798/1920x1080")
-	pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
-	size = width, height = pattern.size
-	draw = ImageDraw.Draw(pattern,'RGBA')
-	font = ImageFont.truetype("segoeui.ttf", 140)
-
-	draw.text((800,375), "16:00", (255, 255, 255, 0),font=font)
-	font = ImageFont.truetype("segoeui.ttf", 65)
-	draw.text((813,550), "Goûté time", (255, 255, 255, 0),font=font)
+	collection = "1162798"
+	hour_x = 800
+	hour = "16:00"
+	text_x = 813
+	text = "Goûter time"
 elif args.period == "apero":
-	response = requests.get("https://source.unsplash.com/collection/829192/1920x1080")
-	pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
-	size = width, height = pattern.size
-	draw = ImageDraw.Draw(pattern,'RGBA')
-	font = ImageFont.truetype("segoeui.ttf", 140)
-
-	draw.text((800,375), "18:00", (255, 255, 255, 0),font=font)
-	font = ImageFont.truetype("segoeui.ttf", 65)
-	draw.text((855,550), "#Apéro !", (255, 255, 255, 0),font=font)
+	collection = "829192"
+	hour_x = 800
+	hour = "18:00"
+	text_x = 855
+	text = "#Apéro !"
 elif args.period == "diner":
-	response = requests.get("https://source.unsplash.com/collection/1300619/1920x1080")
-	pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
-	size = width, height = pattern.size
-	draw = ImageDraw.Draw(pattern,'RGBA')
-	font = ImageFont.truetype("segoeui.ttf", 140)
-
-	draw.text((800,375), "19:30", (255, 255, 255, 0),font=font)
-	font = ImageFont.truetype("segoeui.ttf", 65)
-	draw.text((810,550), "Bon appétit", (255, 255, 255, 0),font=font)
+	collection = "1300619"
+	hour_x = 800
+	hour = "19:30"
+	text_x = 810
+	text = "Bon appétit"
 	
+response = requests.get("https://source.unsplash.com/collection/"+collection+"/1920x1080")
+pattern = Image.open(BytesIO(response.content), "r").convert('RGB')
+size = width, height = pattern.size
+draw = ImageDraw.Draw(pattern,'RGBA')
+font = ImageFont.truetype("segoeui.ttf", 140)
+draw.text((hour_x,375), hour, (255, 255, 255, 0),font=font)
+font = ImageFont.truetype("segoeui.ttf", 65)
+draw.text((text_x,550), text, (255, 255, 255, 0),font=font)
 pattern.save('output.jpg')
-
 if args.no_upload:
 	print("don't upload this image")
 else:
 	media_dict = mastodon.media_post("output.jpg")
-	status = " TEST"
 	status.encode('utf-8').strip()
 	mastodon.status_post(status, in_reply_to_id=None, media_ids=[media_dict])
