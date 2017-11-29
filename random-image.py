@@ -57,9 +57,5 @@ pattern.save('output.jpg')
 
 # media_dict = mastodon.media_post("output.jpg", "image/jpeg")
 media_dict = mastodon.media_post("output.jpg")
-print "Uploaded file, returned:"
-print str(media_dict)
-toot_text = ""
-print "Tooting..." 
 
-mastodon.status_post(toot_text, in_reply_to_id=None, media_ids=[media_dict] )
+mastodon.status_post("", in_reply_to_id=None, media_ids=[media_dict])
