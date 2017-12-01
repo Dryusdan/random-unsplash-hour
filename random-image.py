@@ -82,7 +82,7 @@ elif args.period == "apero":
 	text_x = 855
 	text = "#Apéro !"
 elif args.period == "diner":
-	collection = "1300619"
+	collection = "262127"
 	hour_x = 800
 	hour = "19:30"
 	text_x = 810
